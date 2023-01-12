@@ -36,8 +36,8 @@ primes for the given n value of 10^8. The algorithm is as follows:
 ## Proof of Correctness
 
 C++ has built-in support for multi-threading via the standard library. To ensure that all threads were running
-concurrently,
-a for loop pushed each thread into a vector of threads. After that, each thread was joined in a separate for loop.
+concurrently, a for loop pushed each thread into a vector of threads. After that, each thread was joined in a separate for loop.
+All timing data was recorded before spawning the threads and after joining them.
 
 ## Experimental Evaluation and Results
 
