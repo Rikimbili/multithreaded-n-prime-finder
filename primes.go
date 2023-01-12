@@ -43,6 +43,7 @@ func writeToFile(primes []bool, durationMs int64) {
 	defer f.Close()
 }
 
+// Sets to false all composite numbers in the primes array
 func markComposite(primes []bool, start int, end int, wg *sync.WaitGroup) {
 	defer wg.Done()
 	for i := start; i <= end; i++ {
