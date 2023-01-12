@@ -1,6 +1,6 @@
-# Multi-Threaded N Prime Finder using Sieve of Eratosthenes in Golang
+# Multi-Threaded N Prime Finder using Sieve of Eratosthenes in C++ and Golang
 
-Raciel Antela Pardo - COP4520
+###### Made by Raciel Antela Pardo for COP4520
 
 ## Problem Description
 
