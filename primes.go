@@ -1,3 +1,9 @@
+// Author: Raciel Antela Pardo
+// Date: 1-11-2023
+// Note: This is the initial version I programmed before the assignment requirement was updated. I kept this since it
+// actually resulted in the best runtime (500ms) on a Ryzen 5800x compared to my C++ solution (700ms). My guess is that
+// the Go compiler is able to optimize this code better along with a more lightweight sync/threading library.
+
 package main
 
 import (

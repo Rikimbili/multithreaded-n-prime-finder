@@ -1,3 +1,6 @@
+// Author: Raciel Antela Pardo
+// Date: 1-11-2023
+
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -11,6 +14,7 @@ using namespace std;
 const int MAX_NUM = 100000000;
 const int MAX_THREADS = 8; // Total threads used
 const int MAIN_THREADS = MAX_THREADS * 2 / 3; // Thread count used for most of the work
+const int MAIN_THREADS_STEP_MULTIPLIER = 3;
 
 // Writes the following to a primes.txt file:
 // <execution time>  <total number of primes found>  <sum of all primes found>
@@ -50,9 +54,6 @@ void markComposite(vector<int> &primes, uint64_t start, uint64_t end) {
             }
         }
     }
-    cout << "Start: " << start << " End: " << end << " Time: "
-         << chrono::duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - startTimer).count()
-         << "ms" << endl;
 }
 
 int main() {
@@ -60,13 +61,14 @@ int main() {
     auto sqrtMaxNum = uint64_t(sqrt(MAX_NUM));
 
     // Spawn 8 threads to mark composite numbers
-    auto startTimer = chrono::high_resolution_clock::now();
     vector<thread> threads;
     uint64_t prevChunkEnd = 2;
+    auto startTimer = chrono::high_resolution_clock::now();
     for (int i = 0; i < MAX_THREADS; i++) {
         // Assign a larger thread count to the smaller multiples (as there are more of them) for better performance
         if (i < MAIN_THREADS) {
-            auto end = prevChunkEnd * 2 < sqrtMaxNum ? prevChunkEnd * 2 : sqrtMaxNum;
+            auto nextChunk = prevChunkEnd * MAIN_THREADS_STEP_MULTIPLIER;
+            auto end = nextChunk < sqrtMaxNum ? nextChunk : sqrtMaxNum;
 
             threads.emplace_back(markComposite, ref(primes), prevChunkEnd, end);
             prevChunkEnd = end;
@@ -84,7 +86,10 @@ int main() {
     auto endTimer = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<chrono::milliseconds>(endTimer - startTimer);
 
+    cout << "Finished finding primes in " << duration.count() << "ms" << endl;
+    cout << "Writing to file..." << endl;
+
     writeToFile(primes, duration.count());
 
-    cout << "Finished in " << duration.count() << "ms" << endl;
+    cout << "Done!" << endl;
 }
