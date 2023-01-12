@@ -65,5 +65,3 @@ that need to be checked when marking composite numbers. The final runtime after 
 1. `cd` to this project folder
 2. Run `g++ -std=c++20 -pthread primes.cpp && ./a.out` in the terminal
 3. The full output will be in the `primes.txt` file
-
-```
