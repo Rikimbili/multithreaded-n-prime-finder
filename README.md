@@ -37,7 +37,8 @@ primes for the given n value of 10^8. The algorithm is as follows:
 
 C++ has built-in support for multi-threading via the standard library. To ensure that all threads were running
 concurrently, a for loop pushed each thread into a vector of threads. After that, each thread was joined in a separate for loop.
-All timing data was recorded before spawning the threads and after joining them.
+All timing data was recorded before spawning the threads and after joining them. The recorded timings below adheres to the requirements specified
+and proves that the algorithm is efficient.
 
 ## Experimental Evaluation and Results
 
@@ -48,7 +49,7 @@ The algorithm used ensures that no unnecessary iteration takes place. The Sieve 
 time complexity of O(n log log n) for any arbitrary input. However, since this problem specifies that the upper bound is
 10^8, the runtime is constant.
 
-As explained in the last section, the algorithm only iterates through the numbers that are not composite up to the
+As explained in the Approach section, the algorithm only iterates through the numbers that are not composite up to the
 square root of n which ensures a very efficient operation compared with brute force.
 
 Initially, the numbers' vector was instantiated with the boolean type, but it caused unsafe thread
