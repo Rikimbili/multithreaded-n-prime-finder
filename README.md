@@ -47,7 +47,7 @@ RAM. 8 threads were used when running the program and n = 10^8.
 
 The algorithm used ensures that no unnecessary iteration takes place. The Sieve of Eratosthenes implementation has
 time complexity of O(n log log n) for any arbitrary input. However, since this problem specifies that the upper bound is
-10^8, the runtime is constant.
+10^8, the runtime complexity is constant.
 
 As explained in the Approach section, the algorithm only iterates through the numbers that are not composite up to the
 square root of n which ensures a very efficient operation compared with brute force.
